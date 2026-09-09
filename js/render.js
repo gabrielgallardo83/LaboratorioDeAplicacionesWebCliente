@@ -51,3 +51,55 @@ function getRandomSubset(array, count) {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
+/**
+ * Mapeo de categorías de la API (inglés) a su nombre en español para mostrar
+ */
+const CATEGORY_TRANSLATIONS = {
+  'electronics': 'Electrónica',
+  'jewelery': 'Joyería',
+  "men's clothing": 'Hombres',
+  "women's clothing": 'Mujeres'
+};
+
+/**
+ * Traduce el nombre de una categoría de la API a español para mostrarlo
+ * Si no hay traducción registrada, devuelve el original capitalizado
+ * @param {string} category
+ * @returns {string}
+ */
+function formatCategoryName(category) {
+  if (CATEGORY_TRANSLATIONS[category]) {
+    return CATEGORY_TRANSLATIONS[category];
+  }
+  return category
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+/**
+ * Renderizo la lista de categorías en el nav, incluyendo "Todas"
+ * @param {HTMLElement} container - <ul> donde se inyectan los <li><a>
+ * @param {Array<string>} categories - Categorías desde la API
+ * @param {string} activeCategory - Categoría actualmente activa ('all' por defecto)
+ */
+function renderCategoryNav(container, categories, activeCategory = 'all') {
+  container.innerHTML = '';
+
+  const allCategories = ['all', ...categories];
+
+  allCategories.forEach(category => {
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = '#';
+    link.dataset.category = category;
+    link.textContent = category === 'all' ? 'Todas' : formatCategoryName(category);
+
+    if (category === activeCategory) {
+      link.classList.add('is-active');
+    }
+
+    li.appendChild(link);
+    container.appendChild(li);
+  });
+}
