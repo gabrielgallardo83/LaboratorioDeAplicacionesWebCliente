@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online</title>
+  <meta name="description" content="Tienda minimalista de productos variados.">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a href="/" class="navbar__logo">Tienda</a>
+
+      <ul class="navbar__categories" id="categoryNav" aria-label="Categorías de productos">
+        
+      </ul>
+
+      <div class="navbar__actions">
+        <button class="navbar__search-toggle" id="searchToggle" aria-label="Buscar productos">
+          Buscar
+        </button>
+        <button class="navbar__cart-btn" id="cartToggle" aria-label="Ver carrito de compras">
+          Carrito
+          <span class="cart-badge" id="cartBadge" hidden>0</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="search-bar" id="searchBar" hidden>
+      <label for="searchInput" class="visually-hidden">Buscar producto</label>
+      <input type="search" id="searchInput" placeholder="Buscar productos…">
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <section class="hero" aria-labelledby="heroTitle">
+      <h1 id="heroTitle">Objetos simples,<br>bien elegidos.</h1>
+      <p class="hero__subtitle">Una selección curada, sin ruido.</p>
+    </section>
+
+    <section class="featured" aria-labelledby="featuredTitle">
+      <h2 id="featuredTitle">Destacados</h2>
+      <div class="product-grid" id="featuredGrid">
+        
+      </div>
+    </section>
+
+    <section class="catalog" aria-labelledby="catalogTitle">
+      <h2 id="catalogTitle">Catálogo</h2>
+      <div class="product-grid" id="catalogGrid">
+        
+      </div>
+    </section>
+
+  </main>
+
+  
+  <div class="modal" id="productModal" hidden aria-hidden="true"></div>
+
+  
+  <aside class="cart-sidebar" id="cartSidebar" hidden aria-hidden="true"></aside>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Tienda Online — Fake Store API.</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
