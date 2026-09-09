@@ -38,6 +38,10 @@ async function handleCategoryClick(event) {
   const catalogGrid = document.getElementById('catalogGrid');
   const categoryNav = document.getElementById('categoryNav');
   const catalogTitle = document.getElementById('catalogTitle');
+  const featuredSection = document.getElementById('featuredSection');
+
+  // Destacados solo se muestra en "Todas" (home)
+  featuredSection.hidden = category !== 'all';
 
   // Estado de carga simple mientras filtra
   catalogGrid.innerHTML = `<p class="empty-state">Cargando…</p>`;
