@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   categoryNav.addEventListener('click', handleCategoryClick);
 });
+ 
 
 /**
  * Manejo el click en una categoría del nav: filtra el catálogo
