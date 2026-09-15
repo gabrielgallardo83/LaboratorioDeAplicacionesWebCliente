@@ -26,6 +26,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   categoryNav.addEventListener('click', handleCategoryClick);
   searchToggle.addEventListener('click', () => toggleSearchBar(searchBar, searchInput));
   searchInput.addEventListener('input', handleSearchInput);
+
+  const modalOverlay = document.getElementById('modalOverlay');
+  const productModal = document.getElementById('productModal');
+  const modalClose = document.getElementById('modalClose');
+
+  featuredGrid.addEventListener('click', handleProductCardClick);
+  catalogGrid.addEventListener('click', handleProductCardClick);
+  modalClose.addEventListener('click', closeProductModal);
+  modalOverlay.addEventListener('click', (event) => {
+    if (event.target === modalOverlay) closeProductModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !productModal.hidden) closeProductModal();
+  });
 });
 
 /**
@@ -126,4 +140,50 @@ function updateActiveCategoryLink(container, category) {
   container.querySelectorAll('a[data-category]').forEach(link => {
     link.classList.toggle('is-active', link.dataset.category === category);
   });
+}
+
+/**
+ * Manejo el click en una card de producto: abre el modal con su detalle
+ */
+function handleProductCardClick(event) {
+  const trigger = event.target.closest('.product-card__trigger');
+  if (!trigger) return;
+
+  const productId = Number(trigger.dataset.productId);
+  const product = allProducts.find(p => p.id === productId);
+  if (!product) return;
+
+  openProductModal(product);
+}
+
+/**
+ * Abro el modal con el detalle del producto pasado
+ */
+function openProductModal(product) {
+  const modalOverlay = document.getElementById('modalOverlay');
+  const productModal = document.getElementById('productModal');
+  const modalContent = document.getElementById('modalContent');
+
+  modalContent.innerHTML = renderProductModalContent(product);
+
+  modalOverlay.hidden = false;
+  productModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('modalAddToCart').addEventListener('click', () => {
+    
+    closeProductModal();
+  });
+}
+
+/**
+ * Cierro el modal de detalle de producto.
+ */
+function closeProductModal() {
+  const modalOverlay = document.getElementById('modalOverlay');
+  const productModal = document.getElementById('productModal');
+
+  modalOverlay.hidden = true;
+  productModal.hidden = true;
+  document.body.style.overflow = '';
 }

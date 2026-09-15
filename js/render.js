@@ -103,3 +103,24 @@ function renderCategoryNav(container, categories, activeCategory = 'all') {
     container.appendChild(li);
   });
 }
+
+/**
+ * Genero el HTML interno del modal de detalle de producto
+ * @param {Object} product
+ * @returns {string} HTML del contenido del modal
+ */
+function renderProductModalContent(product) {
+  return `
+    <div class="modal__header">
+      <h2 id="modalTitle" class="modal__title">${product.title}</h2>
+      <p class="modal__price">$${product.price.toFixed(2)}</p>
+    </div>
+    <div class="modal__image-wrap">
+      <img src="${product.image}" alt="${product.title}">
+    </div>
+    <p class="modal__description">${product.description}</p>
+    <button class="btn btn--solid modal__add-btn" id="modalAddToCart" data-product-id="${product.id}">
+      Agregar al carrito
+    </button>
+  `;
+}
