@@ -156,3 +156,55 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 2500);
 }
+
+/**
+ * Genero el HTML de un item individual dentro del sidebar del carrito
+ * @param {Object} item - { id, title, price, image, quantity }
+ * @returns {string}
+ */
+function renderCartItem(item) {
+  const itemTotal = (item.price * item.quantity).toFixed(2);
+
+  return `
+    <div class="cart-item" data-product-id="${item.id}">
+      <img class="cart-item__image" src="${item.image}" alt="${item.title}">
+      <div class="cart-item__info">
+        <p class="cart-item__title">${item.title}</p>
+        <div class="cart-item__controls">
+          <button class="cart-item__btn cart-item__btn--decrease" data-action="decrease" data-product-id="${item.id}" ${item.quantity === 1 ? 'disabled' : ''} aria-label="Restar cantidad">−</button>
+          <span class="cart-item__quantity">${item.quantity}</span>
+          <button class="cart-item__btn cart-item__btn--increase" data-action="increase" data-product-id="${item.id}" aria-label="Sumar cantidad">+</button>
+          <button class="cart-item__btn cart-item__btn--remove" data-action="remove" data-product-id="${item.id}" aria-label="Eliminar producto">🗑</button>
+        </div>
+        <p class="cart-item__total">Total: $${itemTotal}</p>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Renderizo el contenido completo del sidebar del carrito: items + footer
+ * @param {Array} cart
+ */
+function renderCartSidebar(cart) {
+  const itemsList = document.getElementById('cartItemsList');
+  const footer = document.getElementById('cartFooter');
+
+  if (cart.length === 0) {
+    itemsList.innerHTML = `<p class="empty-state">Tu carrito está vacío.</p>`;
+    footer.innerHTML = `
+      <button class="btn btn--solid" disabled>Finalizar compra</button>
+      <button class="btn btn--danger" disabled>Vaciar carrito</button>
+    `;
+    return;
+  }
+
+  itemsList.innerHTML = cart.map(renderCartItem).join('');
+
+  const totalPrice = getCartTotalPrice(cart).toFixed(2);
+  footer.innerHTML = `
+    <p class="cart-sidebar__grand-total">Total: $${totalPrice}</p>
+    <button class="btn btn--solid" id="checkoutBtn">Finalizar compra</button>
+    <button class="btn btn--danger" id="clearCartBtn">Vaciar carrito</button>
+  `;
+}

@@ -78,7 +78,23 @@
 </div>
 
   
-  <aside class="cart-sidebar" id="cartSidebar" hidden aria-hidden="true"></aside>
+  <!-- Sidebar del carrito -->
+<div class="cart-overlay" id="cartOverlay" hidden>
+  <aside class="cart-sidebar" id="cartSidebar" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="cart-sidebar__header">
+      <h2 id="cartTitle">Lista de productos</h2>
+      <button class="cart-sidebar__close" id="cartClose" aria-label="Cerrar carrito">×</button>
+    </div>
+
+    <div class="cart-sidebar__items" id="cartItemsList">
+      <!-- Items del carrito inyectados por JS -->
+    </div>
+
+    <div class="cart-sidebar__footer" id="cartFooter">
+      <!-- Total, finalizar compra y vaciar carrito inyectados por JS -->
+    </div>
+  </aside>
+</div>
 
   <footer class="site-footer">
     <p>&copy; 2026 Tienda Online — Fake Store API.</p>
