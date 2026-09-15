@@ -124,3 +124,35 @@ function renderProductModalContent(product) {
     </button>
   `;
 }
+
+/**
+ * Actualiza el badge del carrito en el navbar con la cantidad total.
+ * @param {number} totalItems
+ */
+function renderCartBadge(totalItems) {
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = totalItems;
+  badge.hidden = totalItems === 0;
+}
+
+/**
+ * Muestro un mensaje temporal (toast) al usuario
+ * @param {string} message
+ */
+function showToast(message) {
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) existingToast.remove();
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  toast.setAttribute('role', 'status');
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => toast.classList.add('toast--visible'));
+
+  setTimeout(() => {
+    toast.classList.remove('toast--visible');
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}

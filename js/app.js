@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !productModal.hidden) closeProductModal();
   });
+
+  renderCartBadge(getCartTotalItems(getCart()));
 });
 
 /**
@@ -171,7 +173,9 @@ function openProductModal(product) {
   document.body.style.overflow = 'hidden';
 
   document.getElementById('modalAddToCart').addEventListener('click', () => {
-    
+    const updatedCart = addToCart(product);
+    renderCartBadge(getCartTotalItems(updatedCart));
+    showToast(`"${product.title}" se agregó al carrito`);
     closeProductModal();
   });
 }
