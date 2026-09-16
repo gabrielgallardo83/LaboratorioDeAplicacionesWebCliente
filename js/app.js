@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   cartItemsList.addEventListener('click', handleCartItemAction);
   cartFooter.addEventListener('click', handleCartFooterAction);
+
+  const categoriesToggle = document.getElementById('categoriesToggle');
+  categoriesToggle.addEventListener('click', toggleCategoriesMenu);
 });
 
 /**
@@ -154,6 +157,8 @@ async function handleCategoryClick(event) {
   currentCatalogProducts = productsToShow;
   renderProductGrid(catalogGrid, currentCatalogProducts);
   updateActiveCategoryLink(categoryNav, category);
+  categoryNav.classList.remove('is-open');
+  document.getElementById('categoriesToggle').setAttribute('aria-expanded', 'false');
 }
 
 /**
@@ -296,4 +301,15 @@ function handleCartFooterAction(event) {
     renderCartBadge(getCartTotalItems(updatedCart));
     showToast('Carrito vaciado');
   }
+}
+
+/**
+ * Muestro/oculto el menú de categorías en mobile
+ */
+function toggleCategoriesMenu() {
+  const categoryNav = document.getElementById('categoryNav');
+  const categoriesToggle = document.getElementById('categoriesToggle');
+
+  const isOpen = categoryNav.classList.toggle('is-open');
+  categoriesToggle.setAttribute('aria-expanded', String(isOpen));
 }
