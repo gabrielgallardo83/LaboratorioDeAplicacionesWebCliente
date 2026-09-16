@@ -54,7 +54,7 @@ Al ser un proyecto sin build ni dependencias, alcanza con abrir `index.html` en 
 
 ```bash
 git clone https://github.com/gabrielgallardo83/LaboratorioDeAplicacionesWebCliente.git
-cd nombre-del-repo
+cd LaboratorioDeAplicacionesWebCliente
 ```
 
 Luego abrir `index.html` con Live Server (VS Code) o similar.
