@@ -2,6 +2,8 @@ let allProducts = [];
 let currentCategory = 'all';
 let currentCatalogProducts = []; // Productos del catálogo antes de aplicar búsqueda
 let searchDebounceTimer = null;
+let lastFocusedElement = null;
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   const featuredGrid = document.getElementById('featuredGrid');
@@ -185,11 +187,14 @@ function openProductModal(product) {
   const productModal = document.getElementById('productModal');
   const modalContent = document.getElementById('modalContent');
 
+  lastFocusedElement = document.activeElement;
   modalContent.innerHTML = renderProductModalContent(product);
 
   modalOverlay.hidden = false;
   productModal.hidden = false;
   document.body.style.overflow = 'hidden';
+
+  document.getElementById('modalClose').focus();
 
   document.getElementById('modalAddToCart').addEventListener('click', () => {
     const updatedCart = addToCart(product);
@@ -209,21 +214,28 @@ function closeProductModal() {
   modalOverlay.hidden = true;
   productModal.hidden = true;
   document.body.style.overflow = '';
+
+  if (lastFocusedElement) lastFocusedElement.focus();
 }
 
+
 /**
- * Abro el sidebar del carrito y renderizo su contenido actual
+ * Abro el sidebar del carrito y renderiza su contenido actual
  */
 function openCartSidebar() {
   const cartOverlay = document.getElementById('cartOverlay');
   const cartSidebar = document.getElementById('cartSidebar');
 
+  lastFocusedElement = document.activeElement;
   renderCartSidebar(getCart());
 
   cartOverlay.hidden = false;
   cartSidebar.hidden = false;
   document.body.style.overflow = 'hidden';
+
+  document.getElementById('cartClose').focus();
 }
+
 
 /**
  * Cierro el sidebar del carrito
@@ -235,6 +247,8 @@ function closeCartSidebar() {
   cartOverlay.hidden = true;
   cartSidebar.hidden = true;
   document.body.style.overflow = '';
+
+  if (lastFocusedElement) lastFocusedElement.focus();
 }
 
 /**
