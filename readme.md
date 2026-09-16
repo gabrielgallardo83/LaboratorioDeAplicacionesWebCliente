@@ -53,7 +53,7 @@ proyecto-ecommerce/
 Al ser un proyecto sin build ni dependencias, alcanza con abrir `index.html` en el navegador, o servirlo con una extensión tipo Live Server
 
 ```bash
-git clone https://github.com/TU-USUARIO/nombre-del-repo.git
+git clone https://github.com/gabrielgallardo83/LaboratorioDeAplicacionesWebCliente.git
 cd nombre-del-repo
 ```
 
