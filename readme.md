@@ -62,4 +62,4 @@ Luego abrir `index.html` con Live Server (VS Code) o similar.
 ##  Autor
 
 
-| Gabriel Gallardo| (https://github.com/gabrielgallardo83) |
+| Gabriel Gallardo| (https://github.com/gabrielgallardo83) | [@gabrielgallardo83]
