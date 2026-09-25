@@ -13,7 +13,7 @@ https://gabrielgallardo83.github.io/LaboratorioDeAplicacionesWebCliente/
 - Navegación por categorías (Electrónica, Joyería, Hombres, Mujeres)
 - Buscador de productos en tiempo real
 - Modal de detalle de producto (título, imagen, precio, descripción)
-- Carrito de compras persistido en `localStorage`:
+- Carrito de compras persistido en localStorage:
   - Agregar productos con mensaje de confirmación
   - Sidebar con listado de productos seleccionados
   - Control de cantidad por producto (+/-), con reglas de deshabilitado
@@ -22,7 +22,7 @@ https://gabrielgallardo83.github.io/LaboratorioDeAplicacionesWebCliente/
   - Finalizar compra (limpia carrito y localStorage)
   - Badge con cantidad total de productos en el navbar
 - Diseño responsive (mobile / tablet / desktop)
-- HTML semántico y accesible (`header`, `nav`, `main`, `section`, `footer`, manejo de foco, `aria-live`, `aria-label`)
+- HTML semántico y accesible (header, nav, main, section, footer, manejo de foco, aria-live, aria-label)
 
 ##  Tecnologías
 
